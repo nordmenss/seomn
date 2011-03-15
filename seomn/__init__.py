@@ -7,7 +7,7 @@ def get_host(href):
     return parse_object.netloc
 
 def execute(db,sql):
-    from django.db import connections
+    from django.db import connections, transaction
     cursor = connections[db].cursor()
     # Your code here...
     transaction.commit_unless_managed(using=db)
