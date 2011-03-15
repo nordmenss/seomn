@@ -30,6 +30,7 @@ def fqdn_redirect(fqdn):
 
 def connect2db(fqdn):#make connection
     params=loadrow("default","SELECT _connection_info.get('"+fqdn+"')")
+    return params
     if params!=[]:
         ip=params[0]
         dbname=params[1]
