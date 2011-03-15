@@ -29,7 +29,7 @@ def fqdn_redirect(fqdn):
     return settings.FORCE_SCRIPT_NAME+fqdn
 
 def connect2db(fqdn):#make connection
-    params=loadrow("interface_db","SELECT _connection_info.get('"+fqdn+"')")
+    params=loadrow("default","SELECT _connection_info.get('"+fqdn+"')")
     ip=params.ip
     dbname=params.dbname
     user=params.username
