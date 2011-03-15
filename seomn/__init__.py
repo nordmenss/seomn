@@ -9,5 +9,5 @@ def get_host(href):
 def execute(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
-    # Your code here...
+    cursor.execute(sql)
     transaction.commit_unless_managed(using=db)
