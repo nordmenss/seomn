@@ -2,7 +2,12 @@ VERSION = '0.0'
 
 from urlparse import urlparse
 
-
 def get_host(href):
     parse_object = urlparse(href)
     return parse_object.netloc
+
+def execute(db,sql):
+    from django.db import connections
+    cursor = connections[db].cursor()
+    # Your code here...
+    transaction.commit_unless_managed(using=db)
