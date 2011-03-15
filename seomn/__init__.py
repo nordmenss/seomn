@@ -30,10 +30,13 @@ def fqdn_redirect(fqdn):
 
 def connect2db(fqdn):#make connection
     params=loadrow("default","SELECT _connection_info.get('"+fqdn+"')")
-    if params!=None:
+    if params!=[]:
         ip=params[0]
         dbname=params[1]
         user=params[2]
         password=params[3]
         port=params[4]
         settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port}
+        return True
+    else:
+        return False
