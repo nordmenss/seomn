@@ -34,7 +34,8 @@ def fqdn_redirect(fqdn):
     return settings.FORCE_SCRIPT_NAME+fqdn
 
 def connect2db(fqdn):#make connection
-    result=loadrow("default","SELECT _connection_info.get('"+fqdn+"')")
+    sql="select c.ip,c.dbname,c.username,c.pass,c.port,c.domain_id  FROM _connection_info.get('"+fqdn+"') as c"
+    result=loadrow("default",sql)
     if result!=[]:
         params=result[0]
         return result
