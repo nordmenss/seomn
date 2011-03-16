@@ -39,7 +39,7 @@ def connect2db(fqdn):#make connection
     if params!=[]:
         ip=params[0]
         dbname=params[1]
-        user=params[2]sdsd
+        user=params[2]
         password=params[3]
         port=params[4]
         domain_id=params[5]
