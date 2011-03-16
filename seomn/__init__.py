@@ -13,6 +13,11 @@ def execute(db,sql):
     cursor.execute(sql)
     transaction.commit_unless_managed(using=db)
 
+def execute_nocommit(db,sql):
+    from django.db import connections, transaction
+    cursor = connections[db].cursor()
+    cursor.execute(sql)
+
 def loadrow(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
@@ -40,10 +45,7 @@ def connect2db(fqdn):#make connection
         domain_id=params[5]
         schema='id_'+str(domain_id)
         settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port,'DATABASE_SCHEMA':schema}
+        execute('cluster','SET search_path to '+schema)
         return True
     else:
         return False
-
-def table_full(tablename):
-    schema=settings.DATABASES['cluster'][DATABASE_SCHEMA]
-    return schema+'\".\"whois_ip'
