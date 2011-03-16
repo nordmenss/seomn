@@ -38,8 +38,8 @@ def connect2db(fqdn):#make connection
         password=params[3]
         port=params[4]
         domain_id=params[5]
-        settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port}
-        settings.DATABASE_SCHEMA = 'id_'+str(domain_id)
+        schema='id_'+str(domain_id)
+        settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port,'DATABASE_SCHEMA':schema}
         return True
     else:
         return False
