@@ -43,3 +43,7 @@ def connect2db(fqdn):#make connection
         return True
     else:
         return False
+
+def table_full(tablename):
+    schema=settings.DATABASES['cluster'][DATABASE_SCHEMA]
+    return schema+'\".\"whois_ip'
