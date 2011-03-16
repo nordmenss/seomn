@@ -38,7 +38,6 @@ def connect2db(fqdn):#make connection
     result=loadrow("default",sql)
     if result!=[]:
         params=result[0]
-        return result
         ip=params[0]
         dbname=params[1]
         user=params[2]
