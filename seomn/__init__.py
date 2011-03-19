@@ -7,6 +7,10 @@ def get_host(href):
     parse_object = urlparse(href)
     return parse_object.netloc
 
+def get_path(href):
+    parse_object = urlparse(href)
+    return parse_object.path
+
 def execute(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
@@ -44,7 +48,7 @@ def connect2db(fqdn):#make connection
         port=params[4]
         domain_id=params[5]
         schema='id_'+str(domain_id)
-        settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port,'DATABASE_SCHEMA':schema}
+        settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port}
         execute_nocommit('cluster','SET search_path to '+schema+";")
         return True
     else:
