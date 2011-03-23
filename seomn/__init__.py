@@ -22,13 +22,19 @@ def execute_nocommit(db,sql):
     cursor = connections[db].cursor()
     cursor.execute(sql)
 
-def loadrow(db,sql):
+def load_row(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
     cursor.execute(sql)
     return cursor.fetchone()
 
-def loadrows(db,sql):
+def load_bool(db,sql):
+    row=load_row(db,sql)
+    if row!=None:
+        return bool(row[0])
+    return None
+
+def load_rows(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
     cursor.execute(sql)
