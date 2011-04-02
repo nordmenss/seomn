@@ -41,6 +41,12 @@ def load_int(db,sql):
         return int(row[0])
     return None
 
+def load_str(db,sql):
+    row=load_row(db,sql)
+    if row!=None:
+        return str(row[0])
+    return None
+
 def load_rows(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
