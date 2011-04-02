@@ -1,7 +1,7 @@
 VERSION = '0.0'
 from django.conf import settings
 from urlparse import urlparse
-from django.db import connections
+from django.db import connections, transaction
 
 def get_host(href):
     parse_object = urlparse(href)
@@ -11,6 +11,7 @@ def get_path(href):
     parse_object = urlparse(href)
     return parse_object.path
 
+@transaction.commit_manually()
 def execute(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
