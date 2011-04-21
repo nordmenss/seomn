@@ -67,7 +67,7 @@ def connect2db(fqdn):#make connection
         domain_id=params[5]
         schema='id_'+str(domain_id)
         settings.DATABASES['cluster']={'ENGINE':'postgresql_psycopg2','NAME':dbname,'USER':user, 'PASSWORD':password,'HOST':ip,'PORT':port}
-        execute_nocommit('cluster',"SELECT _schema.change("+str(domain_id)+");")
+        execute_nocommit('cluster',"SELECT _domain.set("+str(domain_id)+");")
         return True
     else:
         return False
