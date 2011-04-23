@@ -50,7 +50,7 @@ def load_str(db,sql):
 def load_date(db,sql):
     row=load_row(db,sql)
     if row!=None:
-        return datetime.date(row[0])
+        return row[0]
     return None
 
 def load_rows(db,sql):
