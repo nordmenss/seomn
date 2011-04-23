@@ -1,6 +1,7 @@
 VERSION = '0.0'
 from django.conf import settings
 from urlparse import urlparse
+import datetime
 from django.db import connections, transaction
 
 def get_host(href):
