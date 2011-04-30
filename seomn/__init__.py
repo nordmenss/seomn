@@ -26,7 +26,7 @@ def execute_nocommit(db,sql):
 
 @transaction.commit_manually()
 def execute(sql):
-    executet("default",sql)
+    execute("default",sql)
 
 def execute_nocommit(sql):
     execute_nocommit("default",sql)
