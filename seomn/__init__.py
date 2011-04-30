@@ -13,18 +13,6 @@ def get_path(href):
     return parse_object.path
 
 @transaction.commit_manually()
-def execute(sql):
-    from django.db import connections, transaction
-    cursor = connections["default"].cursor()
-    cursor.execute(sql)
-    transaction.commit_unless_managed(using=db)
-
-def execute_nocommit(sql):
-    from django.db import connections, transaction
-    cursor = connections["default"].cursor()
-    cursor.execute(sql)
-
-@transaction.commit_manually()
 def execute(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
@@ -35,6 +23,13 @@ def execute_nocommit(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
     cursor.execute(sql)
+
+@transaction.commit_manually()
+def execute(sql):
+    executet("default",sql)
+
+def execute_nocommit(sql):
+    execute_nocommit("default",sql)
 
 def load_row(db,sql):
     cursor = connections[db].cursor()
