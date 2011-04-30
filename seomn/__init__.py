@@ -20,7 +20,7 @@ def execute(db,sql):
     if db=="default":
         transaction.commit(using=db)
     else:
-        transaction.commit_unless_managed()
+        transaction.commit_unless_managed(using=db)
 
 def execute_nocommit(db,sql):
     from django.db import connections, transaction
