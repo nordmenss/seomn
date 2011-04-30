@@ -17,7 +17,7 @@ def execute(db,sql):
     from django.db import connections, transaction
     cursor = connections[db].cursor()
     cursor.execute(sql)
-    transaction.commit_unless_managed(using=db)
+    transaction.commit(using=db)
 
 def execute_nocommit(db,sql):
     from django.db import connections, transaction
