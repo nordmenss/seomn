@@ -24,13 +24,6 @@ def execute_nocommit(db,sql):
     cursor = connections[db].cursor()
     cursor.execute(sql)
 
-@transaction.commit_manually()
-def execute(sql):
-    execute("default",sql)
-
-def execute_nocommit(sql):
-    execute_nocommit("default",sql)
-
 def load_row(db,sql):
     cursor = connections[db].cursor()
     cursor.execute(sql)
