@@ -50,6 +50,12 @@ def load_str(db,sql):
         return str(row[0])
     return None
 
+def load(db,sql):
+    row=load_row(db,sql)
+    if row!=None:
+        return row[0]
+    return None
+
 def load_date(db,sql):
     row=load_row(db,sql)
     if row!=None:
