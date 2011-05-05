@@ -1,7 +1,8 @@
 VERSION = '0.0'
 from django.conf import settings
 from urlparse import urlparse
-import datetime
+from datetime import datetime
+from django.utils.timesince import timesince
 from django.db import connections, transaction
 
 def get_host(href):
@@ -70,6 +71,30 @@ def load_rows(db,sql):
 
 def fqdn_redirect(fqdn):
     return settings.FORCE_SCRIPT_NAME+fqdn
+
+def str_or_null(value):
+    if value!=None:
+        return str(value)
+    else:
+        return ''
+
+def datetime2str(value,current):
+    if (current-value).days<7:
+        return value.strftime("%Y-%m-%d %H:%M")
+    else:
+        return value.strftime("%Y-%m-%d")
+
+def datetime_ago2str(value,current):
+    if (current-value).days<1:
+        return _(u'today')
+    else:
+        return timesince(value,current)
+
+def date_ago2str(value,current):
+    if (current-value).days<1:
+        return _(u'today')
+    else:
+        return timesince(value,current)
 
 def connect2db(fqdn):#make connection
     sql="select c.ip,c.dbname,c.username,c.pass,c.port,c.domain_id  FROM _connection_info.get('"+fqdn+"') as c"
