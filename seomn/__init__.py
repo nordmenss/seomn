@@ -4,6 +4,7 @@ from urlparse import urlparse
 from datetime import datetime
 from django.utils.timesince import timesince
 from django.db import connections, transaction
+from django.utils.translation import ugettext as _
 
 def get_host(href):
     parse_object = urlparse(href)
