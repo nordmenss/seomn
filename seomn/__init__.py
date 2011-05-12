@@ -81,7 +81,7 @@ def str_or_null(value):
 
 def datetime2str(value,current):
     if (current-value).days<7:
-        return value.strftime("%Y-%m-%dT%H:%M:%S")
+        return value.strftime("%Y-%m-%d %H:%M:%S")
     else:
         return value.strftime("%Y-%m-%d")
 
