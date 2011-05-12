@@ -81,15 +81,12 @@ def str_or_null(value):
 
 def datetime2str(value,current):
     if (current-value).days<7:
-        return value.strftime("%Y-%m-%d %H:%M:%S")
+        return value.strftime("%Y-%m-%d %H:%M")
     else:
         return value.strftime("%Y-%m-%d")
 
 def datetime_ago2str(value,current):
-    if (current-value).days<1:
-        return _(u'today')
-    else:
-        return timesince(value,current)
+    return timesince(value,current)
 
 def date_ago2str(value,current):
     if (current-value).days<1:
